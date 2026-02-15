@@ -3,102 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Felipe Dias - Desenvolvedor PHP especializado em back-end, técnico em eletrônica, com vasta experiência em IoT, automações com IA e excelente comunicação. Atualmente em busca de novas oportunidades.">
-    <meta name="keywords" content="Desenvolvedor PHP, Back-end, Laravel, Técnico em Eletrônica, IoT, Automação com IA, Soft Skills, Manutenção de Máquinas, Programação, Oportunidade de Trabalho">
-    <meta name="author" content="Felipe Dias">
-    <title>Felipe Dias - Desenvolvedor PHP e Técnico em Eletrônica</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Assistência técnica remota via WhatsApp. Envie um vídeo do seu problema e receba um diagnóstico e orçamento sem sair de casa.">
+    <title>Diagnóstico Remoto | Assistência Técnica</title>
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --primary: #00ff88; /* Verde Neon */
+            --secondary: #ffffff;
+            --text-gray: #b0b0b0;
+            --accent: #7000ff; /* Roxo para contraste */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Utilitários */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a2e25 0%, #0f0f0f 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Botão Pulsante */
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+        }
+
+        /* Como Funciona (Cards) */
+        .steps {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .card-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: -10px;
+            right: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* O que você recebe */
+        .deliverables {
+            background-color: var(--card-bg);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .check-list {
+            list-style: none;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .check-list li {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .check-icon {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Preço */
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-color) 0%, #1a2e25 100%);
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .price-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .price-obs {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        /* FAQ e Sobre */
+        .info-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: var(--text-gray);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .btn-cta { width: 100%; text-align: center; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>Felipe Dias</h1>
-        <!-- <img src="sua-foto.jpg" alt="Foto de Felipe Dias" style="width:150px; height:auto;"> Adicione o caminho da sua foto aqui -->
-        <p>Email: felipe.dias789pdev@gmail.com | Telefone: (19) 99746-9206</p>
-        <p>Localização: São Paulo</p>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#educacao">Educação</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="logo">TEC<span class="highlight">REMOTO</span></div>
+            </nav>
+        </div>
     </header>
-    
-    <main>
-        <section id="sobre">
-            <h2>Sobre Mim</h2>
-            <p>Sou Felipe Dias, desenvolvedor back-end especializado em PHP e Laravel, com ampla experiência em eletrônica, IoT e automações utilizando IA como ChatGPT. Além disso, destaco-me pelas minhas ótimas soft skills, como comunicação, liderança e trabalho em equipe. Sempre busco unir minhas habilidades em programação e eletrônica para resolver problemas de forma eficiente e inovadora. Atualmente, estou em busca de novas oportunidades para aplicar meu conhecimento e crescer profissionalmente.</p>
-        </section>
 
-        <section id="habilidades">
-            <h2>Habilidades</h2>
-            <ul>
-                <li>PHP (Laravel)</li>
-                <li>Javascript</li>
-                <li>Python</li>
-                <li>Automação com IA (ChatGPT e outras)</li>
-                <li>Eletrônica e Mecânica de Máquinas</li>
-                <li>Desenvolvimento de Sistemas IoT</li>
-                <li>Atendimento ao Cliente e Vendas</li>
-                <li>Ótimas Soft Skills (Comunicação, Liderança, Trabalho em Equipe)</li>
+    <section class="hero">
+        <div class="container">
+            <h1>Diagnóstico Técnico <br><span class="highlight">Sem Sair de Casa</span></h1>
+            <p>Seu aparelho quebrou? Não perca tempo no trânsito. Envie um vídeo e receba um laudo técnico profissional agora mesmo.</p>
+            <a href="https://wa.me/5513998015286" class="btn-cta">Iniciar Diagnóstico no WhatsApp</a>
+        </div>
+    </section>
+
+    <section class="steps">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-number">01</span>
+                    <h3>Envie o Vídeo</h3>
+                    <p>Grave um vídeo curto, tire fotos ou mande um áudio explicando o problema do seu equipamento.</p>
+                </div>
+                <div class="card">
+                    <span class="card-number">02</span>
+                    <h3>Análise Técnica</h3>
+                    <p>Eu analiso o defeito com base na minha experiência e identifico a provável causa raiz.</p>
+                </div>
+                <div class="card">
+                    <span class="card-number">03</span>
+                    <h3>O Veredito</h3>
+                    <p>Você recebe: Causa provável, se compensa consertar e a estimativa de custo de mercado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="deliverables">
+        <div class="container">
+            <h2 class="section-title">O que você recebe no WhatsApp</h2>
+            <ul class="check-list">
+                <li><span class="check-icon">✓</span> Diagnóstico da Provável Causa</li>
+                <li><span class="check-icon">✓</span> Análise de Viabilidade (Compensa?)</li>
+                <li><span class="check-icon">✓</span> Estimativa de Custo de Peças e Mão de Obra</li>
             </ul>
-        </section>
+            <br><br>
+            <a href="https://wa.me/5513998015286" class="btn-cta" style="background-color: transparent; border: 2px solid var(--primary); color: var(--primary);">Falar com Técnico</a>
+        </div>
+    </section>
 
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <ul>
-                <li>
-                    <strong>Verificação e Combinação de Arquivos</strong>: Script em Python que verifica arquivos, remove duplicatas e combina dados.
-                    <pre>
-                        <code>
-import os
-from pathlib import Path
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Quanto custa o laudo?</h2>
+            <div class="price-card">
+                <h3>Diagnóstico Completo</h3>
+                <div class="price-value">R$ 29,90</div>
+                <p>Valor único por aparelho.</p>
+                <p class="price-obs">Pagamento via PIX somente após o envio do vídeo.</p>
+                <ul class="check-list" style="margin-bottom: 30px; font-size: 1rem;">
+                    <li><span class="check-icon">✓</span> Análise técnica detalhada</li>
+                    <li><span class="check-icon">✓</span> Orçamento de peças (se houver)</li>
+                    <li><span class="check-icon">✓</span> Suporte para dúvidas</li>
+                </ul>
+                <a href="https://wa.me/5513998015286" class="btn-cta">Quero meu Diagnóstico</a>
+            </div>
+        </div>
+    </section>
 
-def checarArquivo(pathFile):
-    pass
-                        </code>
-                    </pre>
-                    <p><a href="https://github.com/seu-usuario/verificacao-arquivos">Veja no GitHub</a></p>
-                </li>
-                <li>
-                    <strong>Contador de Pastas</strong>: Script em Python para contagem automática de pastas em um diretório.
-                    <pre>
-                        <code>
-import os
-from pathlib import Path
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <span class="faq-question">Como funciona o pagamento?</span>
+                <p>É super simples. Você me manda o vídeo, eu confirmo que consigo analisar e te passo minha chave PIX. Assim que confirmado, te envio o laudo completo.</p>
+            </div>
 
-listar_pastas = os.listdir()
+            <div class="faq-item">
+                <span class="faq-question">E se você não descobrir o problema?</span>
+                <p>Se eu analisar o vídeo e não conseguir identificar a causa provável, <strong>você não paga nada</strong>. Honestidade em primeiro lugar.</p>
+            </div>
 
-numero_pastas = len([x for x in listar_pastas if Path(x).is_dir()])
-                        </code>
-                    </pre>
-                    <p><a href="https://github.com/seu-usuario/contador-pastas">Veja no GitHub</a></p>
-                </li>
-            </ul>
-        </section>
+            <div class="faq-item">
+                <span class="faq-question">Quais aparelhos você analisa?</span>
+                <p>Computadores, Notebooks, Celulares e Videogames. Se tiver dúvida, me chame no WhatsApp sem compromisso.</p>
+            </div>
 
-        <section id="educacao">
-            <h2>Educação</h2>
-            <p>Tecnólogo em Gestão de TI - Anhanguera (2015)</p>
-            <p>Curso AWS Restart - Certificação em Cloud Computing (2023)</p>
-            <p>Curso Python do básico ao avançado - Udemy</p>
-        </section>
-    </main>
+            <div style="margin-top: 60px; text-align: center;">
+                <h2 class="section-title">Quem sou eu?</h2>
+                <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: var(--text-gray);">Sou técnico especializado em hardware e eletrônica. Criei o <strong>TecRemoto</strong> para ajudar pessoas que não querem ser enganadas por assistências que cobram preços abusivos ou inventam defeitos. Meu objetivo é te dar a informação correta para você decidir o que fazer.</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <section id="contato">
-            <h2>Contato</h2>
-            <!-- <p>Email: felipe.dias789pdev@gmail.com</p> -->
-            <h2>Telefone: (19) 99746-9206</h2>
-            <p>Links: 
-                <a href="https://www.linkedin.com/in/felipe-c-398200308/" target="_blank">LinkedIn</a> | 
-                <!-- <a href="https://github.com/felipedias789" target="_blank">GitHub</a> -->
-            </p>
-        </section>
-        <p>&copy; 2024 Felipe Dias. Todos os direitos reservados.</p>
+        <div class="container">
+            <p>&copy; 2026 TecRemoto. Soluções rápidas via WhatsApp.</p>
+        </div>
     </footer>
+
 </body>
 </html>
